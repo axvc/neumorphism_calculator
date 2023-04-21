@@ -58,7 +58,6 @@ button:hover {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
     background: #DFE2EB;
   }
   a:hover {
@@ -69,5 +68,11 @@ button:hover {
   }
   body {
     background: #DFE2EB;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    background: linear-gradient(180deg, #242833 0%, #16181D 100%);
   }
 }
