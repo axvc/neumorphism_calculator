@@ -1,10 +1,14 @@
 # Neumorphism Calculator
 
+![](./src/desc/screenshot-1.png)
+
+![](./src/desc/screenshot-2.png)
+
 A calculator web application with neumorphism design.
 
 ## Live Demo
 
-You can check out the live demo of this application [here](#).
+You can check out the live demo of this application [here](http://neumorphism-calculator-eosin.vercel.app).
 
 ## Technologies Used
 
@@ -16,7 +20,7 @@ You can check out the live demo of this application [here](#).
 
 ## Credits
 
-This neumorphism calculator design was inspired by the work of Designer @enxhs. You can find the original design on [Figma](#).
+This neumorphism calculator design was inspired by the work of Designer @enxhs. You can find the original design on [Figma](https://www.figma.com/file/QPlOBcuXSkQshSfpMQO9tH/Neumorphism-Calculator-(Community)?node-id=0%3A1&t=6SetDHGzUEIqLV2e-1).
 
 ## Installation and Setup
 
