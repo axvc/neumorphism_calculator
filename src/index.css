@@ -29,6 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background: linear-gradient(180deg, #242833 0%, #16181D 100%);
 }
 
 h1 {
@@ -61,5 +62,8 @@ button:hover {
   }
   button {
     background-color: #f9f9f9;
+  }
+  body {
+    background: #DFE2EB;
   }
 }

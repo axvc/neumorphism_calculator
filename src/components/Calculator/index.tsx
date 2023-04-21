@@ -52,12 +52,20 @@ const Calculator: React.FC = () => {
         </ST.GridItem>
         <ST.GridItem gridRow="1 / 2" gridColumn="3 / 4">
           <SpecialButton onClick={handlePlusMinus}>
-            {theme === Theme.LIGHT ? <PlusMinusLight /> : <PlusMinusDark />}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <PlusMinusLight />
+            ) : (
+              <PlusMinusDark />
+            )}
           </SpecialButton>
         </ST.GridItem>
         <ST.GridItem gridRow="1 / 2" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Divide)}>
-            {theme === Theme.LIGHT ? <DivideLight /> : <DivideDark />}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <DivideLight />
+            ) : (
+              <DivideDark />
+            )}
           </OperatorButton>
         </ST.GridItem>
         <ST.GridItem gridRow="2 / 3" gridColumn="1 / 2">
@@ -77,7 +85,11 @@ const Calculator: React.FC = () => {
         </ST.GridItem>
         <ST.GridItem gridRow="2 / 3" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Multiply)}>
-            {theme === Theme.LIGHT ? <MultiplyLight /> : <MultiplyDark />}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <MultiplyLight />
+            ) : (
+              <MultiplyDark />
+            )}
           </OperatorButton>
         </ST.GridItem>
         <ST.GridItem gridRow="3 / 4" gridColumn="1 / 2">
@@ -97,7 +109,11 @@ const Calculator: React.FC = () => {
         </ST.GridItem>
         <ST.GridItem gridRow="3 / 4" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Subtract)}>
-            {theme === Theme.LIGHT ? <SubtractLight /> : <SubtractDark />}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <SubtractLight />
+            ) : (
+              <SubtractDark />
+            )}
           </OperatorButton>
         </ST.GridItem>
         <ST.GridItem gridRow="4 / 5" gridColumn="1 / 2">
