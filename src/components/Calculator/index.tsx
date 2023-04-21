@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
+import * as ST from './styles';
 import NumberButton from '@components/Buttons/NumberButton';
 import { ButtonValue } from '@constants/ButtonValue';
 import OperatorButton from '@components/Buttons/OperatorButton';
@@ -23,33 +24,6 @@ import { ReactComponent as EqualsDark } from '@assets/dark/equals.svg';
 
 import { ITheme, Theme } from '@constants/Color';
 
-const CalculatorWrapper = styled.div`
-  width: 100vw;
-  height: 100vh;
-  background: ${({ theme }) => theme.background};
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`;
-
-const Grid = styled.div`
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(5, 1fr);
-  gap: 10px;
-  padding: 0 20px;
-  margin-bottom: 40px;
-`;
-
-const GridItem = styled.div<{ gridRow: string; gridColumn: string }>`
-  grid-row: ${({ gridRow }) => gridRow};
-  grid-column: ${({ gridColumn }) => gridColumn};
-  transition: transform 0.5s linear;
-  &:active {
-    transform: translateY(12px);
-  }
-`;
-
 const Calculator: React.FC = () => {
   const theme = useTheme();
   const {
@@ -65,83 +39,83 @@ const Calculator: React.FC = () => {
   } = useCalculatorLogic();
 
   return (
-    <CalculatorWrapper>
+    <ST.CalculatorWrapper>
       <DisplayArea value={value} history={history} />
-      <Grid>
-        <GridItem gridRow="1 / 2" gridColumn="1 / 2">
+      <ST.Grid>
+        <ST.GridItem gridRow="1 / 2" gridColumn="1 / 2">
           <SpecialButton onClick={handleClear}>{ButtonValue.C}</SpecialButton>
-        </GridItem>
-        <GridItem gridRow="1 / 2" gridColumn="2 / 3">
-          <SpecialButton onClick={() => handlePercentage()}>
+        </ST.GridItem>
+        <ST.GridItem gridRow="1 / 2" gridColumn="2 / 3">
+          <SpecialButton onClick={handlePercentage}>
             {ButtonValue.Percent}
           </SpecialButton>
-        </GridItem>
-        <GridItem gridRow="1 / 2" gridColumn="3 / 4">
-          <SpecialButton onClick={() => handlePlusMinus()}>
+        </ST.GridItem>
+        <ST.GridItem gridRow="1 / 2" gridColumn="3 / 4">
+          <SpecialButton onClick={handlePlusMinus}>
             {theme === Theme.LIGHT ? <PlusMinusLight /> : <PlusMinusDark />}
           </SpecialButton>
-        </GridItem>
-        <GridItem gridRow="1 / 2" gridColumn="4 / 5">
+        </ST.GridItem>
+        <ST.GridItem gridRow="1 / 2" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Divide)}>
             {theme === Theme.LIGHT ? <DivideLight /> : <DivideDark />}
           </OperatorButton>
-        </GridItem>
-        <GridItem gridRow="2 / 3" gridColumn="1 / 2">
+        </ST.GridItem>
+        <ST.GridItem gridRow="2 / 3" gridColumn="1 / 2">
           <NumberButton onClick={() => handleDigit(ButtonValue.Seven)}>
             {ButtonValue.Seven}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="2 / 3" gridColumn="2 / 3">
+        </ST.GridItem>
+        <ST.GridItem gridRow="2 / 3" gridColumn="2 / 3">
           <NumberButton onClick={() => handleDigit(ButtonValue.Eight)}>
             {ButtonValue.Eight}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="2 / 3" gridColumn="3 / 4">
+        </ST.GridItem>
+        <ST.GridItem gridRow="2 / 3" gridColumn="3 / 4">
           <NumberButton onClick={() => handleDigit(ButtonValue.Nine)}>
             {ButtonValue.Nine}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="2 / 3" gridColumn="4 / 5">
+        </ST.GridItem>
+        <ST.GridItem gridRow="2 / 3" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Multiply)}>
             {theme === Theme.LIGHT ? <MultiplyLight /> : <MultiplyDark />}
           </OperatorButton>
-        </GridItem>
-        <GridItem gridRow="3 / 4" gridColumn="1 / 2">
+        </ST.GridItem>
+        <ST.GridItem gridRow="3 / 4" gridColumn="1 / 2">
           <NumberButton onClick={() => handleDigit(ButtonValue.Four)}>
             {ButtonValue.Four}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="3 / 4" gridColumn="2 / 3">
+        </ST.GridItem>
+        <ST.GridItem gridRow="3 / 4" gridColumn="2 / 3">
           <NumberButton onClick={() => handleDigit(ButtonValue.Five)}>
             {ButtonValue.Five}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="3 / 4" gridColumn="3 / 4">
+        </ST.GridItem>
+        <ST.GridItem gridRow="3 / 4" gridColumn="3 / 4">
           <NumberButton onClick={() => handleDigit(ButtonValue.Six)}>
             {ButtonValue.Six}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="3 / 4" gridColumn="4 / 5">
+        </ST.GridItem>
+        <ST.GridItem gridRow="3 / 4" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Subtract)}>
             {theme === Theme.LIGHT ? <SubtractLight /> : <SubtractDark />}
           </OperatorButton>
-        </GridItem>
-        <GridItem gridRow="4 / 5" gridColumn="1 / 2">
+        </ST.GridItem>
+        <ST.GridItem gridRow="4 / 5" gridColumn="1 / 2">
           <NumberButton onClick={() => handleDigit(ButtonValue.One)}>
             {ButtonValue.One}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="4 / 5" gridColumn="2 / 3">
+        </ST.GridItem>
+        <ST.GridItem gridRow="4 / 5" gridColumn="2 / 3">
           <NumberButton onClick={() => handleDigit(ButtonValue.Two)}>
             {ButtonValue.Two}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="4 / 5" gridColumn="3 / 4">
+        </ST.GridItem>
+        <ST.GridItem gridRow="4 / 5" gridColumn="3 / 4">
           <NumberButton onClick={() => handleDigit(ButtonValue.Three)}>
             {ButtonValue.Three}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="4 / 5" gridColumn="4 / 5">
+        </ST.GridItem>
+        <ST.GridItem gridRow="4 / 5" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Add)}>
             {(theme as ITheme).VALUE === Theme.LIGHT ? (
               <AddLight />
@@ -149,31 +123,31 @@ const Calculator: React.FC = () => {
               <AddDark />
             )}
           </OperatorButton>
-        </GridItem>
-        <GridItem gridRow="5 / 6" gridColumn="1 / 3">
+        </ST.GridItem>
+        <ST.GridItem gridRow="5 / 6" gridColumn="1 / 3">
           <NumberButton
-            zeroButton={true}
+            zeroButton
             onClick={() => handleDigit(ButtonValue.Zero)}
           >
             {ButtonValue.Zero}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="5 / 6" gridColumn="3 / 4">
-          <NumberButton onClick={() => handleDecimalPoint()}>
+        </ST.GridItem>
+        <ST.GridItem gridRow="5 / 6" gridColumn="3 / 4">
+          <NumberButton onClick={handleDecimalPoint}>
             {ButtonValue.Decimal}
           </NumberButton>
-        </GridItem>
-        <GridItem gridRow="5 / 6" gridColumn="4 / 5">
-          <OperatorButton onClick={() => handleEquals()}>
+        </ST.GridItem>
+        <ST.GridItem gridRow="5 / 6" gridColumn="4 / 5">
+          <OperatorButton onClick={handleEquals}>
             {(theme as ITheme).VALUE === Theme.LIGHT ? (
               <EqualsLight />
             ) : (
               <EqualsDark />
             )}
           </OperatorButton>
-        </GridItem>
-      </Grid>
-    </CalculatorWrapper>
+        </ST.GridItem>
+      </ST.Grid>
+    </ST.CalculatorWrapper>
   );
 };
 
