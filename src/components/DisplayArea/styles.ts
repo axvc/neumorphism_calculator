@@ -23,4 +23,6 @@ export const HistoryFormula = styled.div`
   color: ${({ theme }) => theme.SECONDARY_FONT};
 `;
 
-export const Value = styled.div``;
+export const Value = styled.div`
+  color: ${({ theme }) => theme.MAIN_FONT};
+`;
