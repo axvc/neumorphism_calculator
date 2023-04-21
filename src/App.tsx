@@ -3,6 +3,7 @@ import Calculator from './components/Calculator';
 import { ThemeProvider } from 'styled-components';
 import { Dark, Light, Theme } from '@constants/Color';
 import { Toaster } from 'react-hot-toast';
+import { GlobalStyle } from '@styles/globalStyles';
 
 const App: FC = () => {
   const [theme, setTheme] = useState(Theme.LIGHT);
@@ -19,6 +20,7 @@ const App: FC = () => {
 
   return (
     <ThemeProvider theme={theme === Theme.LIGHT ? Light : Dark}>
+      <GlobalStyle theme={theme} />
       <Calculator />
       <Toaster
         position="top-center"
@@ -33,4 +35,3 @@ const App: FC = () => {
 };
 
 export default App;
-
