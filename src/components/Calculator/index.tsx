@@ -1,17 +1,32 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { useTheme } from 'styled-components';
 import NumberButton from '@components/Buttons/NumberButton';
 import { ButtonValue } from '@constants/ButtonValue';
 import OperatorButton from '@components/Buttons/OperatorButton';
 import SpecialButton from '@components/Buttons/SpecialButton';
 import DisplayArea from '@components/DisplayArea';
-import { Color } from '@constants/Color';
 import useCalculatorLogic from '@hooks/useCalculatorLogic';
+
+import { ReactComponent as AddLight } from '@assets/light/add.svg';
+import { ReactComponent as SubtractLight } from '@assets/light/subtract.svg';
+import { ReactComponent as MultiplyLight } from '@assets/light/multiply.svg';
+import { ReactComponent as DivideLight } from '@assets/light/divide.svg';
+import { ReactComponent as PlusMinusLight } from '@assets/light/plus-minus.svg';
+import { ReactComponent as EqualsLight } from '@assets/light/equals.svg';
+
+import { ReactComponent as AddDark } from '@assets/dark/add.svg';
+import { ReactComponent as SubtractDark } from '@assets/dark/subtract.svg';
+import { ReactComponent as MultiplyDark } from '@assets/dark/multiply.svg';
+import { ReactComponent as DivideDark } from '@assets/dark/divide.svg';
+import { ReactComponent as PlusMinusDark } from '@assets/dark/plus-minus.svg';
+import { ReactComponent as EqualsDark } from '@assets/dark/equals.svg';
+
+import { ITheme, Theme } from '@constants/Color';
 
 const CalculatorWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background: ${Color.LIGHT_BACKGROUND};
+  background: ${({ theme }) => theme.background};
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
@@ -29,11 +44,17 @@ const Grid = styled.div`
 const GridItem = styled.div<{ gridRow: string; gridColumn: string }>`
   grid-row: ${({ gridRow }) => gridRow};
   grid-column: ${({ gridColumn }) => gridColumn};
+  transition: transform 0.5s linear;
+  &:active {
+    transform: translateY(12px);
+  }
 `;
 
 const Calculator: React.FC = () => {
+  const theme = useTheme();
   const {
     value,
+    history,
     handleDigit,
     handleOperator,
     handleDecimalPoint,
@@ -45,7 +66,7 @@ const Calculator: React.FC = () => {
 
   return (
     <CalculatorWrapper>
-      <DisplayArea value={value} />
+      <DisplayArea value={value} history={history} />
       <Grid>
         <GridItem gridRow="1 / 2" gridColumn="1 / 2">
           <SpecialButton onClick={handleClear}>{ButtonValue.C}</SpecialButton>
@@ -57,12 +78,12 @@ const Calculator: React.FC = () => {
         </GridItem>
         <GridItem gridRow="1 / 2" gridColumn="3 / 4">
           <SpecialButton onClick={() => handlePlusMinus()}>
-            {ButtonValue.PlusMinus}
+            {theme === Theme.LIGHT ? <PlusMinusLight /> : <PlusMinusDark />}
           </SpecialButton>
         </GridItem>
         <GridItem gridRow="1 / 2" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Divide)}>
-            {ButtonValue.Divide}
+            {theme === Theme.LIGHT ? <DivideLight /> : <DivideDark />}
           </OperatorButton>
         </GridItem>
         <GridItem gridRow="2 / 3" gridColumn="1 / 2">
@@ -82,7 +103,7 @@ const Calculator: React.FC = () => {
         </GridItem>
         <GridItem gridRow="2 / 3" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Multiply)}>
-            {ButtonValue.Multiply}
+            {theme === Theme.LIGHT ? <MultiplyLight /> : <MultiplyDark />}
           </OperatorButton>
         </GridItem>
         <GridItem gridRow="3 / 4" gridColumn="1 / 2">
@@ -102,7 +123,7 @@ const Calculator: React.FC = () => {
         </GridItem>
         <GridItem gridRow="3 / 4" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Subtract)}>
-            {ButtonValue.Subtract}
+            {theme === Theme.LIGHT ? <SubtractLight /> : <SubtractDark />}
           </OperatorButton>
         </GridItem>
         <GridItem gridRow="4 / 5" gridColumn="1 / 2">
@@ -122,7 +143,11 @@ const Calculator: React.FC = () => {
         </GridItem>
         <GridItem gridRow="4 / 5" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleOperator(ButtonValue.Add)}>
-            {ButtonValue.Add}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <AddLight />
+            ) : (
+              <AddDark />
+            )}
           </OperatorButton>
         </GridItem>
         <GridItem gridRow="5 / 6" gridColumn="1 / 3">
@@ -140,7 +165,11 @@ const Calculator: React.FC = () => {
         </GridItem>
         <GridItem gridRow="5 / 6" gridColumn="4 / 5">
           <OperatorButton onClick={() => handleEquals()}>
-            {ButtonValue.Equal}
+            {(theme as ITheme).VALUE === Theme.LIGHT ? (
+              <EqualsLight />
+            ) : (
+              <EqualsDark />
+            )}
           </OperatorButton>
         </GridItem>
       </Grid>

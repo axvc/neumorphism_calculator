@@ -1,5 +1,9 @@
 import { useState } from 'react';
 import { ButtonValue } from '@constants/ButtonValue';
+import toast from 'react-hot-toast';
+
+const MAX_SYMBOLS = 24;
+const notify = () => toast.error('Too long');
 
 export type Operator =
   | ButtonValue.Add
@@ -48,6 +52,10 @@ const useCalculatorLogic = () => {
         waitingForOperand: false,
       });
     } else {
+      if (value.length >= MAX_SYMBOLS) {
+        notify();
+        return;
+      }
       setState({
         ...state,
         value: value === '0' ? digit : value + digit,
@@ -92,7 +100,6 @@ const useCalculatorLogic = () => {
       const x = parseFloat(previousValue);
       const y = parseFloat(value);
       const result = calculate(x, y, operator);
-      console.log(x, y, operator, result);
 
       setState({
         ...state,
@@ -109,6 +116,7 @@ const useCalculatorLogic = () => {
       operator: undefined,
       waitingForOperand: true,
     });
+    setPreviousValue('0');
   };
 
   const handlePercentage = () => {
@@ -126,6 +134,9 @@ const useCalculatorLogic = () => {
 
   return {
     value: state.value,
+    history: `${state.operator ? previousValue : ''} ${state.operator || ''} ${
+      state.value
+    }`,
     handleDigit,
     handleOperator,
     handleDecimalPoint,

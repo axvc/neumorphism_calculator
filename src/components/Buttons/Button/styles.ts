@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { ButtonType } from '@constants/ButtonType';
-import { Color } from '@constants/Color';
+import { ITheme } from '@constants/Color';
 
 interface IWithButtonType {
   buttonType: ButtonType;
@@ -10,32 +10,32 @@ interface IButtonWrapper extends IWithButtonType {
   zeroButton: boolean;
 }
 
-const getOuterBackground = (buttonType: ButtonType) =>
+const getOuterBackground = (buttonType: ButtonType, theme: ITheme) =>
   ({
-    [ButtonType.Number]: Color.LIGHT_NUMBER_BUTTON_OUTER_BACKGROUND,
-    [ButtonType.Operator]: Color.LIGHT_OPERATOR_BUTTON_OUTER_BACKGROUND,
-    [ButtonType.Special]: Color.LIGHT_SPECIAL_BUTTON_OUTER_BACKGROUND,
+    [ButtonType.Number]: theme.NUMBER_BUTTON_OUTER_BACKGROUND,
+    [ButtonType.Operator]: theme.OPERATOR_BUTTON_OUTER_BACKGROUND,
+    [ButtonType.Special]: theme.SPECIAL_BUTTON_OUTER_BACKGROUND,
   }[buttonType]);
 
-const getOuterBoxShadow = (buttonType: ButtonType) =>
+const getOuterBoxShadow = (buttonType: ButtonType, theme: ITheme) =>
   ({
-    [ButtonType.Number]: Color.LIGHT_NUMBER_BUTTON_OUTER_BOX_SHADOW,
-    [ButtonType.Operator]: Color.LIGHT_OPERATOR_BUTTON_OUTER_BOX_SHADOW,
-    [ButtonType.Special]: Color.LIGHT_SPECIAL_BUTTON_OUTER_BOX_SHADOW,
+    [ButtonType.Number]: theme.NUMBER_BUTTON_OUTER_BOX_SHADOW,
+    [ButtonType.Operator]: theme.OPERATOR_BUTTON_OUTER_BOX_SHADOW,
+    [ButtonType.Special]: theme.SPECIAL_BUTTON_OUTER_BOX_SHADOW,
   }[buttonType]);
 
-const getInnerBackground = (buttonType: ButtonType) =>
+const getInnerBackground = (buttonType: ButtonType, theme: ITheme) =>
   ({
-    [ButtonType.Number]: Color.LIGHT_NUMBER_BUTTON_INNER_BACKGROUND,
-    [ButtonType.Operator]: Color.LIGHT_OPERATOR_BUTTON_INNER_BACKGROUND,
-    [ButtonType.Special]: Color.LIGHT_SPECIAL_BUTTON_INNER_BACKGROUND,
+    [ButtonType.Number]: theme.NUMBER_BUTTON_INNER_BACKGROUND,
+    [ButtonType.Operator]: theme.OPERATOR_BUTTON_INNER_BACKGROUND,
+    [ButtonType.Special]: theme.SPECIAL_BUTTON_INNER_BACKGROUND,
   }[buttonType]);
 
-const getFont = (buttonType: ButtonType) =>
+const getFont = (buttonType: ButtonType, theme: ITheme) =>
   ({
-    [ButtonType.Number]: Color.LIGHT_NUMBER_BUTTON_FONT,
-    [ButtonType.Operator]: Color.LIGHT_OPERATOR_BUTTON_FONT,
-    [ButtonType.Special]: Color.LIGHT_SPECIAL_BUTTON_FONT,
+    [ButtonType.Number]: theme.NUMBER_BUTTON_FONT,
+    [ButtonType.Operator]: theme.OPERATOR_BUTTON_FONT,
+    [ButtonType.Special]: theme.SPECIAL_BUTTON_FONT,
   }[buttonType]);
 
 export const ButtonWrapper = styled.div<IButtonWrapper>`
@@ -45,9 +45,11 @@ export const ButtonWrapper = styled.div<IButtonWrapper>`
   justify-content: center;
   align-items: center;
   padding: 4px;
-  box-shadow: ${({ buttonType }) => getOuterBoxShadow(buttonType)};
+  box-shadow: ${({ buttonType, theme }) =>
+    getOuterBoxShadow(buttonType, theme)};
   border-radius: 23px;
-  background: ${({ buttonType }) => getOuterBackground(buttonType)};
+  background: ${({ buttonType, theme }) =>
+    getOuterBackground(buttonType, theme)};
 `;
 
 export const Button = styled.button<IWithButtonType>`
@@ -59,11 +61,11 @@ export const Button = styled.button<IWithButtonType>`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  //padding: 4px;
   filter: blur(1px);
   border-radius: 18px;
-  background: ${({ buttonType }) => getInnerBackground(buttonType)};
-  color: ${Color.LIGHT_MAIN_FONT};
+  background: ${({ buttonType, theme }) =>
+    getInnerBackground(buttonType, theme)};
+  color: ${({ theme }) => theme.MAIN_FONT};
   font-family: 'Nunito Sans', sans-serif;
   font-style: normal;
   font-size: 16px;
@@ -77,10 +79,11 @@ export const Button = styled.button<IWithButtonType>`
 `;
 
 export const ChildrenWrapper = styled.div<IWithButtonType>`
+  display: flex;
   position: absolute;
   cursor: pointer;
   user-select: none;
   font-size: 21px;
   line-height: 25px;
-  color: ${({ buttonType }) => getFont(buttonType)};
+  color: ${({ buttonType, theme }) => getFont(buttonType, theme)};
 `;

@@ -3,7 +3,7 @@ import Button from '@components/Buttons/Button';
 import { ButtonType } from '@constants/ButtonType';
 
 interface Props {
-  onClick?: MouseEventHandler<HTMLButtonElement> | undefined;
+  onClick?: MouseEventHandler<HTMLDivElement> | undefined;
   children?: React.ReactNode;
   zeroButton?: boolean;
 }
