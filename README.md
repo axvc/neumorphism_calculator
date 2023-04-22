@@ -1,8 +1,8 @@
 # Neumorphism Calculator
 
-![](./src/desc/screenshot-1.png)
+![img||320x271](./src/desc/screenshot-1.png)
 
-![](./src/desc/screenshot-2.png)
+![img||320x271](./src/desc/screenshot-2.png)
 
 A calculator web application with neumorphism design.
 
