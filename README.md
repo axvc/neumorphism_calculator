@@ -27,7 +27,7 @@ This neumorphism calculator design was inspired by the work of Designer @enxhs. 
 2. Navigate to the project directory.
 3. Run `pnpm install` to install the required dependencies.
 4. Run `pnpm dev` to start the development server.
-5. Open http://localhost:3000 in your browser to see the app.
+5. Open http://localhost:5173 in your browser to see the app.
 
 ## Features
 
